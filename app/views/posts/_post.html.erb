@@ -1,0 +1,12 @@
+<div class="post clearfix" style="background-image: url(<%= post.background %>)">
+<h4><%= link_to post.name, post %></h4>
+<div class="post-body row col-md-12">
+ <%=
+  text = strip_tags(post.body).gsub(/&nbsp;/i," ")
+  truncate(text, length: 200, separator: ' ')
+  %>
+</div>
+
+<%= link_to "почитать маленько", post, { class: "btn btn-default more"} %>
+
+</div>

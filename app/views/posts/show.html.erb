@@ -1,0 +1,69 @@
+<div class="container">
+
+<div class="col-md-12 post">
+
+<h1>
+  <% if user_signed_in? && !@current.role.user? %>
+     <%= link_to @name, rails_admin.edit_path('post', @id) %>
+     <span class="glyphicon glyphicon-pencil"></span>
+  <% elsif user_signed_in? && @current.role.user? && @current.id == @post.user_id  %>
+    <%= link_to @name, rails_admin.edit_path('post', @id) %>
+    <span class="glyphicon glyphicon-pencil"></span>
+  <% else %>
+    <%= @name %>
+  <% end %> 
+</h1>
+<div class="post-info row col-sm-12 col-md-4">
+  <span class="label label-default pull-left"><%= @date %></span>
+  <span class="label label-info pull-right col-md-offset-1"><%= @username %></span>
+</div>
+<div class="post-body row col-md-12">
+ <%=
+  @body
+  %>
+</div>
+
+<div class="col-md-12 row">
+  <%= 
+    if @post.previous.blank?
+      "<span class='btn btn-default pull-left'><i class='glyphicon glyphicon-chevron-left'></i> Впереди пустота</span>".html_safe
+    else
+      link_to @post.previous, :class => "btn btn-default pull-left" do 
+        "<i class='glyphicon glyphicon-chevron-left'></i>#{ @post.previous.name }".html_safe
+      end
+    end 
+  %>
+  <%= 
+    if @post.next.blank?
+      "<span class='btn btn-default pull-right'>Позади тлен <i class='glyphicon glyphicon-chevron-right'></i></span>".html_safe
+    else
+      link_to @post.next, :class => "btn btn-default pull-right" do 
+        "#{ @post.next.name } <i class='glyphicon glyphicon-chevron-right'></i>".html_safe
+      end
+    end 
+  %>
+</div>
+
+<div class="related col-md-12 row">
+<h4>Похожие записи:</h4>
+<%=
+related = Post.all.tagged_with(@tags, :any => true).take(3)
+if related.length >= 1
+  related.map do |post|
+    if post.id != @id
+      name = post.name
+      background = post.background
+      body = post.body
+      body_text = strip_tags(body).gsub(/&nbsp;/i," ")
+      "<div class='col-md-6 col-sm-6 col-lg-4'><div class='rel-wrap' style='background-image: url(#{ background })'><h5>#{ link_to post.name, post}</h5><p>#{ truncate(body_text, length: 200, separator: ' ') }</p></div></div>"
+    end
+  end.join("").html_safe
+else
+  "<span class='badge no-similar'>Слабоумие победило, ничего не нашлось</span>".html_safe
+end  
+%>
+</div>
+
+</div>
+
+</div>

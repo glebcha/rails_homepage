@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Слабоумие и отвага</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'layouts/messages' %>
+  <nav class="navbar">
+    <div class="container">
+      <%= render 'layouts/user_header' %>
+      <%= link_to image_tag("logo.png"), root_path, :class => "navbar-brand" %>
+    </div>
+  </nav>
+  <div class="container-narrow">
+  <%= yield %>
+  </div>
+
+</body>
+</html>

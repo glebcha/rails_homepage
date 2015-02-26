@@ -1,0 +1,49 @@
+<div class="container">
+  
+    <div class="col-md-3">
+    
+    <% if user_signed_in? %>
+    <div class="user-posts">
+    <h4><%= @username %>, ваши последние записи:</h4>
+      <ul>
+        <%= 
+        if @posts.blank?
+          "<li><span class='badge'><strong>Отсутствуют</strong></span></li>".html_safe
+        else 
+          @posts.map do |post| 
+            link = link_to post.name, post
+            status = ""
+            case post.status
+              when 1
+                status = "опубликована"
+              when 0
+                status = "черновик"
+              else
+                status = "забанена"
+            end
+            "<li> #{ link.gsub(/\"/, '') } <span class='label label-info'>#{ status }</span></li>"
+          end.join("").html_safe
+        end 
+        %>
+      </ul>
+    </div>
+    <% end %>
+
+    <%= render partial: "tag_cloud" %>
+    </div>
+
+    
+    <div class="col-md-9">
+
+        <%= 
+        if @index_posts.blank?
+          "<tr><td><span class='badge'><strong>Отсутствуют</strong></span></td></tr>".html_safe
+        else 
+          render partial: "posts/post", collection: @index_posts
+        end 
+        %>
+        <%= paginate @index_posts, :param_name => "index_posts", :outer_window => 3 %>
+    
+    </div>
+
+</div>

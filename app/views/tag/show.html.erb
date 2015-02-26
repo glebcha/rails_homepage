@@ -1,0 +1,32 @@
+<div class="container">
+<h1>Записи с тегом <span class="label label-default"><%= @tag.name %></span></h1>
+
+<% if @posts.count > 0 %>
+
+  <div class="related col-md-12 row">
+
+  <% @posts.each do |post| %>
+
+    <div class='col-md-6 col-sm-6 col-lg-4'>
+    	<div class='rel-wrap' style='background-image: url(<%= post.background %>)'>
+    		<h5><%= link_to post.name, post_path(post) %></h5>
+    		<p>
+    			<%= 
+    				body = post.body
+      				body_text = strip_tags(body).gsub(/&nbsp;/i," ")
+      				truncate(body_text, length: 200, separator: ' ')
+    			%>
+    		</p>
+    	</div>
+    </div>
+
+  <% end %>
+
+  </div>
+
+<% else %>
+
+  <p>Ничего с этим тегом не нашлось.</p>
+
+<% end %>
+</div>

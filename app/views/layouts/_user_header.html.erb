@@ -1,0 +1,33 @@
+<ul class="nav nav-pills pull-right">
+  <li>
+      <%= 
+      link_to Post, :title => "Бложик" do
+        "<i class='glyphicon glyphicon-comment'></i>".html_safe
+      end 
+      %>
+  </li>
+  <% if user_signed_in? %>
+    <li>
+      <%= 
+        link_to rails_admin_path, :title => "Панель управления" do 
+          "<i class='glyphicon glyphicon-dashboard'></i>".html_safe
+        end 
+      %>
+    </li>
+    <li>
+      <%= 
+        link_to destroy_user_session_path, :method => :delete, :title => "Выйти" do 
+          "<i class='glyphicon glyphicon-off'></i>".html_safe
+        end 
+      %>
+    </li>
+  <% else %>
+    <li>
+      <%= 
+        link_to new_user_session_path do
+          "<i class='glyphicon glyphicon-log-in'></i>".html_safe
+        end
+      %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,10 @@
+<%= 
+	@extension = File.extname(attachment.file.to_s)
+	if ( ['.jpg', '.png'].include? @extension )
+		'<a href="'.html_safe + attachment.file + '" class="download-label boxer label label-default"><span class="glyphicon glyphicon-picture"></span>'.html_safe + 
+		attachment.name + '</a>'.html_safe
+	else
+		'<a href="'.html_safe + attachment.file + '" class="download-label label label-default" download="'.html_safe + 
+		attachment.name + '"><span class="glyphicon glyphicon-file"></span>'.html_safe + attachment.name + '</a>'.html_safe
+	end 
+%>

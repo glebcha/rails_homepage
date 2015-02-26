@@ -1,0 +1,43 @@
+<div class="container tiles">
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="tall">
+				<%= link_to @firstpost, :style => "background-image: url(#{@background})" do %>
+					<div class="post-text">
+						<%=
+					  	text = strip_tags(@firstpost_text).gsub(/&nbsp;/i," ") 
+					  	truncate(text, length: 400, separator: ' ') 
+						%>
+					</div>
+					<span class="tiles-btn">
+						<span class="tiles-btn-wrap">
+							<span><%= @firstpost_name %></span>
+						</span>
+					</span>
+				<% end %>
+			</div>
+			<div class="col-md-12 github-stars">
+				<h3>Мои&nbsp;<span class="glyphicon glyphicon-star"></span> на Github:</h3>
+				<%= 
+					user = @client.user('glebcha')
+					repos = user.rels[:starred].get.data
+					repos.take(2).map do |repo|
+						date = repo.updated_at
+						formatted_date = date.to_time.strftime('%d.%m.%Y')
+						"<div class='col-md-6'><p><a href='#{repo.html_url}' target='_blank'>#{repo.name}</a><p><div>Добавили в избранное: #{repo.stargazers_count} пользователей</div><div>Последнее обновление: #{formatted_date}</div></div>"
+					end.join("").html_safe
+				%>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<a href="https://instagram.com/glebcha" target="_blank">
+				<% @instagram.each do |instagram| %>
+      				<%= image_tag instagram.images.standard_resolution.url %>
+    			<% end %>
+				<span class="tiles-btn instabtn">
+					<span class="tiles-btn-wrap"></span>
+				</span>
+			</a>
+		</div>
+	</div>
+</div>

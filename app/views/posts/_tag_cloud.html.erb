@@ -1,0 +1,11 @@
+<div class="tags-list clearfix">
+<% 
+  @tags = Post.tag_counts_on(:tags)
+  tag_cloud(@tags, %w(recent1 recent2 recent3 recent4)) do |tag, css_class| 
+%>
+  <span class="label pull-left">
+  	<i class="glyphicon glyphicon-tag"></i>
+  	<%= link_to tag.name, tag_path(tag), :class => css_class %>
+  </span>
+<% end %>
+</div>
