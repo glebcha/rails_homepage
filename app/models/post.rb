@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
 
   mount_uploader :background, BackgroundUploader
 
+  acts_as_punchable
+
   acts_as_taggable_on :tags
 
   acts_as_url :name, :sync_url => true, :limit => 50

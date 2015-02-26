@@ -38,6 +38,7 @@ gem 'instagram'
 gem "octokit", "~> 3.0"
 gem 'faraday'
 gem 'faraday-http-cache'
+gem "punching_bag"
 gem 'momentjs-rails'
 gem 'fullcalendar-rails'
 

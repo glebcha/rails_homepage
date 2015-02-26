@@ -23,6 +23,9 @@ class PostsController < ApplicationController
     @tags = @post.tags
     @attachments = @post.attachments
     @background = @post.background
+    
+    @post.punch(request)
+
     fresh_when :etag => @post, public: true 
 
     rescue Exception
