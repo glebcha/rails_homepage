@@ -5,8 +5,10 @@
 				<%= link_to @firstpost, :style => "background-image: url(#{@background})" do %>
 					<div class="post-text">
 						<%=
-					  	text = strip_tags(@firstpost_text).gsub(/&nbsp;/i," ") 
-					  	truncate(text, length: 400, separator: ' ') 
+                                                coder = HTMLEntities.new
+					  	text = strip_tags(@firstpost_text) 
+                                                final_text = coder.decode(text)
+                                                truncate(final_text, length: 400, separator: ' ') 
 						%>
 					</div>
 					<span class="tiles-btn">

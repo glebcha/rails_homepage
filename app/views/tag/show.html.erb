@@ -12,9 +12,11 @@
     		<h5><%= link_to post.name, post_path(post) %></h5>
     		<p>
     			<%= 
+                                coder = HTMLEntities.new
     				body = post.body
-      				body_text = strip_tags(body).gsub(/&nbsp;/i," ")
-      				truncate(body_text, length: 200, separator: ' ')
+      				body_text = strip_tags(body)
+                                full_body_text = coder.decode(body_text)
+      				truncate(full_body_text, length: 200, separator: ' ')
     			%>
     		</p>
     	</div>

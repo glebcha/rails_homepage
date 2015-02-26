@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -38,7 +38,8 @@ gem 'instagram'
 gem "octokit", "~> 3.0"
 gem 'faraday'
 gem 'faraday-http-cache'
-gem "punching_bag"
+gem 'punching_bag'
+gem 'htmlentities'
 gem 'momentjs-rails'
 gem 'fullcalendar-rails'
 

@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  require 'htmlentities'
+
   def post_params
     params.require(:post).permit(:name, :tag_list) 
   end

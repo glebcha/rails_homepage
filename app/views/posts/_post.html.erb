@@ -2,8 +2,10 @@
 <h4><%= link_to post.name, post %></h4>
 <div class="post-body row col-md-12">
  <%=
-  text = strip_tags(post.body).gsub(/&nbsp;/i," ")
-  truncate(text, length: 200, separator: ' ')
+  coder = HTMLEntities.new
+  text = strip_tags(post.body)
+  final_text = coder.decode(text)
+  truncate(final_text, length: 200, separator: ' ')
   %>
 </div>
 

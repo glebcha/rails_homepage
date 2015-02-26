@@ -104,7 +104,7 @@ ru:
     actions:
       dashboard:
         title: "Обзор"
-        menu: "Контрольная панель"
+        menu: "Панель управления"
         breadcrumb: "Контрольная Панель"
       index:
         title: "%{model_label_plural}"
