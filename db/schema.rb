@@ -13,10 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150226071723) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "attachments", force: true do |t|
+  create_table "attachments", force: :cascade do |t|
     t.string   "name"
     t.string   "file"
     t.integer  "attachable_id"
@@ -25,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150226071723) do
     t.datetime "updated_at"
   end
 
-  create_table "ckeditor_assets", force: true do |t|
+  create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
     t.integer  "data_file_size"
@@ -38,10 +35,10 @@ ActiveRecord::Schema.define(version: 20150226071723) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
-  create_table "posts", force: true do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "name"
     t.text     "body"
     t.integer  "status",     default: 0
@@ -52,10 +49,10 @@ ActiveRecord::Schema.define(version: 20150226071723) do
     t.string   "background"
   end
 
-  add_index "posts", ["url"], name: "index_posts_on_url", unique: true, using: :btree
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+  add_index "posts", ["url"], name: "index_posts_on_url", unique: true
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "punches", force: true do |t|
+  create_table "punches", force: :cascade do |t|
     t.integer  "punchable_id",                          null: false
     t.string   "punchable_type", limit: 20,             null: false
     t.datetime "starts_at",                             null: false
@@ -64,10 +61,10 @@ ActiveRecord::Schema.define(version: 20150226071723) do
     t.integer  "hits",                      default: 1, null: false
   end
 
-  add_index "punches", ["average_time"], name: "index_punches_on_average_time", using: :btree
-  add_index "punches", ["punchable_type", "punchable_id"], name: "punchable_index", using: :btree
+  add_index "punches", ["average_time"], name: "index_punches_on_average_time"
+  add_index "punches", ["punchable_type", "punchable_id"], name: "punchable_index"
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -77,17 +74,17 @@ ActiveRecord::Schema.define(version: 20150226071723) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "",              null: false
     t.string   "email",                  default: "",              null: false
     t.string   "encrypted_password",     default: "",              null: false
@@ -106,8 +103,8 @@ ActiveRecord::Schema.define(version: 20150226071723) do
     t.string   "uid"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

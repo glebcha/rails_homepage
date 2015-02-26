@@ -9,7 +9,7 @@ class StaticController < ApplicationController
     @background = @firstpost.background
     @instagram = Instagram.user_recent_media("262435066", {:count => 1})
     # Octokit
-    @client = Octokit::Client.new(access_token: "4476426f2394e4174655057b13cfd9a9ec10f665")
+    @client = Octokit::Client.new(access_token: ENV["octokit_access_token"])
     fresh_when :etag => @firstpost, public: true 
   end		
 end
