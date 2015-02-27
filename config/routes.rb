@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   #root :to => redirect('/admin')
   root to: 'static#home'
+  get 'instagram', to: 'static#instagram'
 
   concern :paginatable do
     get '(page/:page)', :action => :index, :on => :collection, :as => ''
