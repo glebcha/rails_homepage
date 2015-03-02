@@ -1,8 +1,8 @@
 <div class="container instagram">
   <% @instagram.each do |instagram| %>
-    <div class="col-md-4 insta-item">
+    <%= link_to instagram.link, class: "col-md-4 insta-item", target: "_blank" do %>
       <%= image_tag instagram.images.standard_resolution.url %>
       <span><i class="glyphicon glyphicon-heart"></i> <%= instagram.likes[:count] %> </span>
-    </div>
+    <% end %>
   <% end %>
 </div>

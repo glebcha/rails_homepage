@@ -45,7 +45,7 @@ Temporary Items
 .directory
 
 # Ignore whole assets directory
-assets
+# assets
 
 # Ignore node modules
 node_modules
@@ -66,7 +66,10 @@ capybara-*.html
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
-/public/system
+/lib/assets/
+/vendor/assets/
+/public/system/
+/public/assets/
 /public/uploads/
 /public/uploads/attachment/*
 /coverage/

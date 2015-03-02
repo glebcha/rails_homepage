@@ -1,0 +1,11 @@
+<div class="container github-stars">
+  <%= 
+    user = @client.user('glebcha')
+    repos = user.rels[:starred].get.data
+    repos.map do |repo|
+      date = repo.updated_at
+      formatted_date = date.to_time.strftime('%d.%m.%Y')
+      "<div class='col-md-6'><p><a href='#{repo.html_url}' target='_blank'>#{repo.name}</a></p><p>#{repo.description}</p><div>Добавили в избранное: #{repo.stargazers_count} пользователей</div><div>Последнее обновление: #{formatted_date}</div></div>"
+    end.join("").html_safe
+   %>
+</div>
