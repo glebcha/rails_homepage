@@ -48,16 +48,7 @@ class Post < ActiveRecord::Base
           end.join("").html_safe
         end
       end
-      field :attachments do   
-        pretty_value do
-          @@rand_attach_id = rand(2**256).to_s(36)[0..7]
-          %{<a class="accordion-toggle" data-toggle="collapse" 
-            data-parent="#accordion2" href="#}.html_safe + @@rand_attach_id + %{">Показать вложения</a></div> <div id="}.html_safe + @@rand_attach_id + %{" class="accordion-body 
-            collapse"><div class="accordion-inner" style="word-break: break-all;white-space: normal;">}.html_safe + bindings[:object].attachments.map do |attachment|
-            %{<a href="#{attachment.file}" class="label label-default" style="display: block;text-align: center;margin: 0 0 2px 0;" download="#{attachment.name}">#{attachment.name}</span>}
-          end.join("").html_safe + %{</div>}.html_safe
-        end
-      end
+      field :hits
       field :status
       field :updated_at
       field :user

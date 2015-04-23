@@ -56,7 +56,7 @@ if related.length >= 1
       background = post.background
       body = post.body
       body_text = strip_tags(body).gsub(/&nbsp;/i," ")
-      "<div class='col-md-6 col-sm-6 col-lg-4'><div class='rel-wrap' style='background-image: url(#{ background })'><h5>#{ link_to post.name, post}</h5><p>#{ truncate(body_text, length: 200, separator: ' ') }</p></div></div>"
+      "<div class='col-md-6 col-sm-6 col-lg-4'><div class='rel-wrap' style='background-image: url(#{ background })'><h5>#{ link_to post.name, post}</h5><p>#{ truncate(body_text, length: 190, separator: ' ') }</p></div></div>"
     end
   end.join("").html_safe
 else

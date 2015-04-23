@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:name, :tag_list) 
   end
   def index
-    @index_posts = Post.where(:status => 1).per_page_kaminari(params[:index_posts]).per(10)
+    @index_posts = Post.where(:status => 1).per_page_kaminari(params[:index_posts]).per(5)
     @user = current_user
     if @user != nil
       @username = @user.name

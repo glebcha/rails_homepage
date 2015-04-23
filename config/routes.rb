@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'errors/file_not_found'
+
+  get 'errors/unprocessable'
+
+  get 'errors/internal_server_error'
+
   if Rails.env.production?
     devise_for :users, :skip => :registrations, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
   else
@@ -23,6 +29,10 @@ Rails.application.routes.draw do
       get 'tag', :action => 'show'
     end
   end
+
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 
  
   # resources :orders, :path => '/' for clean url without controller name

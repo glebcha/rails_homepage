@@ -37,6 +37,7 @@ ru:
         background: 'Фоновое изображение'
         attachments: 'Файлы'
         tags: 'Теги'
+        hits: 'Просмотры'
         status: 'Статус'
         user: 'Пользователь'
         created_at: "Создана"

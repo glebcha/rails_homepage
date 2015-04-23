@@ -5,7 +5,7 @@
   coder = HTMLEntities.new
   text = strip_tags(post.body)
   final_text = coder.decode(text)
-  truncate(final_text, length: 200, separator: ' ')
+  truncate(final_text, length: 190, separator: ' ')
   %>
 </div>
 
